@@ -46,7 +46,8 @@ window.AMAR_STRINGS = {
     next_step_note:'Attendance, marks, grading, fees and the other modules are being added step by step.',
     school_fixed:'School name is fixed', timeout_info:'Auto logout after inactivity (minutes)',
     export_done:'File downloaded', confirm_logout:'Log out now?',
-    roll:'Roll', details:'Details', no_results:'No matching records'
+    roll:'Roll', details:'Details', no_results:'No matching records',
+    install_app:'Install app on this phone'
   },
   ne: {
     welcome:'स्वागत छ', choose_login:'लगइन गर्ने तरिका छान्नुहोस्',
@@ -93,6 +94,7 @@ window.AMAR_STRINGS = {
     next_step_note:'हाजिरी, अङ्क, ग्रेडिङ, शुल्क र अन्य मोड्युलहरू चरणबद्ध रूपमा थपिँदैछन्।',
     school_fixed:'विद्यालयको नाम स्थायी छ', timeout_info:'निष्क्रिय भएपछि स्वतः लगआउट (मिनेट)',
     export_done:'फाइल डाउनलोड भयो', confirm_logout:'अहिले लगआउट गर्ने?',
-    roll:'रोल', details:'विवरण', no_results:'मिल्दो विवरण भेटिएन'
+    roll:'रोल', details:'विवरण', no_results:'मिल्दो विवरण भेटिएन',
+    install_app:'यो फोनमा एप इन्स्टल गर्नुहोस्'
   }
 };
