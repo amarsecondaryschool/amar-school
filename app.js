@@ -108,6 +108,17 @@
     showSelect();
   }
 
+  /* ---------- one-tap install button (Android Chrome) ---------- */
+  var installEvt = null;
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault(); installEvt = e;
+    var b = document.getElementById('install-btn'); if (b) b.hidden = false;
+  });
+  window.addEventListener('appinstalled', function () {
+    installEvt = null;
+    var b = document.getElementById('install-btn'); if (b) b.hidden = true;
+  });
+
   /* ---------- pre-login screens ---------- */
   function showSplash() {
     root.innerHTML = '<div class="center"><div class="logo">🎓</div><div class="school">' + SCHOOL + '</div></div>';
@@ -117,6 +128,7 @@
     var h = '<div class="page"><div class="row between" style="justify-content:flex-end">' + langToggle() + '</div>' +
       '<div style="text-align:center;margin:18px 0 22px"><div class="logo" style="margin:0 auto 12px">🎓</div>' +
       '<div class="school">' + SCHOOL + '</div><p class="muted">' + esc(t('choose_login')) + '</p></div>';
+    h += '<button class="btn primary" id="install-btn"' + (installEvt ? '' : ' hidden') + ' style="margin-bottom:16px">⬇ ' + esc(t('install_app')) + '</button>';
     [['admin', 'c-purple'], ['teacher', 'c-blue'], ['parent', 'c-green']].forEach(function (r) {
       h += '<button class="choice ' + r[1] + '" data-role="' + r[0] + '"><span class="ico">' + roleIcon(r[0]) + '</span>' +
         esc(roleLabel(r[0])) + '<span class="go">›</span></button>';
@@ -125,6 +137,12 @@
     h += '</div>';
     root.innerHTML = h;
     bindLangToggle(root, showSelect);
+    var ib = $('#install-btn');
+    if (ib) ib.addEventListener('click', function () {
+      if (!installEvt) return;
+      installEvt.prompt();
+      installEvt.userChoice.then(function () { installEvt = null; ib.hidden = true; });
+    });
     root.querySelectorAll('[data-role]').forEach(function (b) {
       b.addEventListener('click', function () { showLogin(b.getAttribute('data-role')); });
     });
